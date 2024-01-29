@@ -3,12 +3,16 @@ import { describe, expect, it } from "vitest";
 import useHelperWithoutDeclaration from "../../src/hook/useHelperWithoutDeclaration";
 import { Provider } from "react-redux";
 import testStore from "../utils/redux/testStore";
+import { BrowserRouter } from "react-router-dom";
 
 describe("useHelperWithoutDeclaration", () => {
-  it("return dispatch", async () => {
-    const wrapper = ({ children }) => (
+  const wrapper = ({ children }) => (
+    <BrowserRouter>
       <Provider store={testStore}>{children}</Provider>
-    );
+    </BrowserRouter>
+  );
+
+  it("return dispatch", async () => {
     const { result } = renderHook(() => useHelperWithoutDeclaration(), {
       wrapper,
     });
@@ -27,4 +31,12 @@ describe("useHelperWithoutDeclaration", () => {
 
   //     expect(result.current.dispatch).toBeTruthy();
   //   });
+
+  it("return navigate", async () => {
+    const { result } = renderHook(() => useHelperWithoutDeclaration(), {
+      wrapper,
+    });
+
+    expect(result.current.navigate).toBeTruthy();
+  });
 });
