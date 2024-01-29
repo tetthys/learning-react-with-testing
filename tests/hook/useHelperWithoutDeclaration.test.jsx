@@ -16,8 +16,7 @@ describe("useHelperWithoutDeclaration", () => {
     expect(result.current.dispatch).toBeTruthy();
   });
 
-  // ! DON"T GIVE ALIAS TO WRAPPER
-  // ! Because 'renderHook' expect only the option named 'wrapper'
+  // ! 'renderHook' expect the option only named 'wrapper' not a custom name like 'wrapWithProvider'
   //   it("return dispatch", async () => {
   //     const wrapWithProvider = ({ children }) => (
   //       <Provider store={testStore}>{children}</Provider>
